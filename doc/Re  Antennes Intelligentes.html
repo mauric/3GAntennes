@@ -1,0 +1,288 @@
+<html>
+<head>
+<title>Re: Antennes Intelligentes</title>
+<link rel="important stylesheet" href="chrome://messagebody/skin/messageBody.css">
+</head>
+<body>
+<table border=0 cellspacing=0 cellpadding=0 width="100%" class="header-part1"><tr><td><b>Sujet : </b>Re: Antennes Intelligentes</td></tr><tr><td><b>De : </b>pascal scalart &lt;pascal.scalart@univ-rennes1.fr&gt;</td></tr><tr><td><b>Date : </b>16/09/2016 17:01</td></tr></table><table border=0 cellspacing=0 cellpadding=0 width="100%" class="header-part2"><tr><td><b>Pour : </b>pdobias@enssat.fr, zgao@enssat.fr, phalle@enssat.fr, jpaturel@enssat.fr,
+        ttribode@enssat.fr, mauric.caceres@gmail.com</td></tr></table><br>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Bonjour,<br>
+    <br>
+    ci-joint un extrait d'un livre récent sur le sujet des antennes.
+    Vous y trouverez en page 159-161 des éléments concernant le
+    phénomène de repliement spatial.<br>
+    <br>
+    Une fois que vous avez analysé les conditions de repliement spatial,
+    il faut que vous ayez dans vos programme Matlab une paramètre <b>d_sur_lamda</b>
+    qui correspondra au rapport de la distance inter-capteur à lambda
+    (longueur d'onde). En fait, le programme ne connait ni d, ni lambda,
+    mais on va fixer le rapport entre ces deux quantité à des valeurs
+    telles que 1/2, 1/4, ou 1/8. Une fois cela fait, il vous faut :<br>
+    <ol>
+      <li>Théoriquement, en programmant la formule (2.8) du poly. Faire
+        l'analyse sous Matlab du diagramme de l'antenne élémentaire
+        comme indiqué sur le poly (exercice 2.2). Le tracer en linéaire
+        (le module de C au carré exprimé en dB en fonction de Phi) puis
+        en coordonnées polaire (avec le programme TracePolar.m en
+        exécutant TracePolar(Phi, abs(C), -50)  où Phi est un vecteur
+        d'angles, et où C est un vecteur stockant la réponse de
+        l'antenne obtenue pour ces angles. <br>
+      </li>
+      <li>Expérimentalement (exercice 2.3). Utiliser le programme
+        GeneSignaux.m (cf. figure ci-dessous) pour obtenir les signaux
+        sur les NOMBRE_ANTENNES antennes élémentaires au sein de la
+        matrice  dénommée Sig <br>
+      </li>
+    </ol>
+    <p>            &gt;&gt;
+[MatriceIB,MatriceS,Sig,BinaireIn,PenteSCurve]=GeneSignaux(Phis,Phi1,Phi2,RSB,RSI1,RSI2)</p>
+    <p> Je vous expliquerai ultérieurement comment on introduit des
+      interférents dans la simulation. Pour l'instant, on introduit
+      uniquement les signaux utiles issus de la source S ainsi que du
+      bruit sur les signaux captés. Il faudra alors modifier les
+      paramètres donnés page 24 selon :<br>
+    </p>
+    <ul>
+      <li> on choisit le niveau de bruit (relativement à celui du signal
+        utile): <br>
+      </li>
+      <ul>
+        <li>donc on fixe le rapport signal-à-bruit RSB à une valeur
+          voulue (entre 30 et 0 dB)</li>
+      </ul>
+      <li>il n'y a pas d’interférent n°1 :</li>
+      <ul>
+        <li> donc le rapport signal-à-interférent n°1 RSI1 ---&gt;
+          infini (300 dB suffira)</li>
+        <li>on met n'importe quelle direction d'arrivée de l'interférent
+          n°1 : Phi1 = -30 degrés *(pi/180)<br>
+        </li>
+      </ul>
+      <li>il n'y a pas d’interférent n°2 : <br>
+      </li>
+      <ul>
+        <li>donc le rapport signal-à-interférent n°2 RSI2 ---&gt; infini
+          (300 dB suffira)</li>
+        <li>on met n'importe quelle direction d'arrivée de l'interférent
+          n°2 : Phi2 = +60 degrés *(pi/180)</li>
+      </ul>
+      <li>on choisit la direction de la source utile S : <br>
+      </li>
+      <ul>
+        <li>donc on fixe Phis à une valeur dans l'intervalle [-90°,+90°]
+          * (pi/180)</li>
+      </ul>
+    </ul>
+    <p>   Pour cela , on fixera : <br>
+    </p>
+    <ul>
+      <li>le facteur de retombée du filtre d'émission/réception (1/2
+        Nyquist) : ROLL_OFF_FACTOR entre 0 et 1</li>
+      <li>le nombre d'antennes NOMBRE_ANTENNES</li>
+      <li>le facteur de sur-échantillonnage (cf. EII2) : FACTEUR_SURECH
+        a une valeur paire 2, 4, 6, 8, 10, 16...</li>
+      <li>la bande passante du signal à BANDWIDTH=200e3 soit 200kHz
+        (ceci est fixé arbitrairement!)<br>
+      </li>
+    </ul>
+    <p>    et donc, on aura toujours (cf. EII2)</p>
+    <p>    DUREE_SYMBOLE=1/BANDWIDTH;<br>
+          BAUD_RATE=1/DUREE_SYMBOLE;<br>
+          SAMPLING_FREQ=FACTEUR_SURECH*BAUD_RATE;<br>
+    </p>
+    <br>
+    <img src="imap-message://mauric%2Ecaceres%40gmail%2Ecom@imap.googlemail.com/INBOX#3759?header=saveas&part=1.1.2.2&filename=dkappjknodmddkci.png" alt=""
+      height="328" width="491"><br>
+    <br>
+    <br>
+    Je vous laisse regarder cela.<br>
+    <br>
+    A la semaine prochaine.<br>
+    <br>
+    Pascal Scalart<br>
+    <br>
+    <div class="moz-signature">-- <br>
+      <style>
+@import url(http://fonts.googleapis.com/css?family=Asap);
+#bloc-signature div,
+#bloc-signature p {
+    margin:0;padding:0;
+    border:none;
+}
+#bloc-signature {
+    background-color:#EDEDED;
+    border: 1px solid #CDCDCD;
+    border-radius: 5px;
+    color: #000000;
+    font-family: Asap,"Trebuchet MS",Helvetica,sans-serif;
+    font-size: 0.9em;
+    font-weight: normal;
+    min-width: 440px;
+    min-height: 100px;
+    padding: 10px;
+    display:inline-block;
+}
+#bloc-signature a {
+    text-decoration:none;
+    color : inherit;
+}
+#bloc-signature #coordonnee,
+#bloc-signature #ecole,
+#bloc-signature #tutelle
+{
+    display:inline-block;
+    min-width:155px;
+    vertical-align:top;
+}
+#bloc-signature #coordonnee {
+    font-size: 90%;
+}
+#bloc-signature #personne {
+    font-weight:bold;
+}
+#bloc-signature #fonction {
+    color:#910917;
+    font-style: italic;
+    display:block;
+}
+#bloc-signature #service {
+    color:black;
+    font-style: normal;
+    display:block;
+}
+/*-- phone ---------------------------------------------------------*/
+#bloc-signature #phone {
+    font-size:90%;
+    margin:5px 0 0 0;
+    line-height:10pt;
+}
+#bloc-signature #phone div {margin:0;padding:0;border:none;}
+#bloc-signature #contact div span:first-child
+{
+    color:#909090;
+    display: inline-block;
+    text-align: left;
+    width: 2.5em;
+}
+/*-- mail ---------------------------------------------------------*/
+#bloc-signature #mail {
+    white-space:nowrap;
+    margin:5px 0 0 0;
+    font-size:90%;
+    line-height:10pt;
+}
+#bloc-signature #mail div {margin:0;padding:0;border:none;}
+#bloc-signature #mail,
+#bloc-signature #mail a,
+#bloc-signature #mail a:link, #bloc-signature #mail a:visited {
+    color: #F29400;
+}
+#bloc-signature #mail a:hover, #bloc-signature #mail a:active {
+    text-decoration:underline;
+}
+#bloc-signature #web {
+    display:none;
+}
+
+/*-----------------------------------------------------------------*/
+#bloc-signature #ecole {
+    font-size:80%;
+    margin-left:10px;
+}
+#bloc-signature #logo img {
+    /*height:40px;*/
+    width:140px;
+    border:none;
+}
+#bloc-signature #pied img {
+    /*height:21px;*/
+    width:213px;
+    border:none;
+    display:none;
+}
+
+#bloc-signature #ecole #pied {margin:-5px 0 0 0;padding:0;}
+#bloc-signature #logo {
+    margin-top:10px;
+    text-align: center;
+    /*
+    margin-left:auto;
+    margin-right:auto;
+    */
+}
+#bloc-signature  #distribution{
+    margin:10px 0 0 0;
+    line-height:10pt;
+    text-align: center;
+}
+/*-----------------------------------------------------------------*/
+#bloc-signature div#tutelle {
+    margin-left:10px;
+    margin-top:14px;
+    max-height:90px;
+    min-width:100px;
+}
+div#tutelle div {
+    /*margin-left:25px;*/
+    text-align:center;
+    padding : 10px;
+}
+div#tutelle img {border:none;}
+div#tutelle img.logo_ur1 {width:80px;}
+</style>
+      <div id="bloc-signature">
+        <div id="adresse">
+          <div id="coordonnee">
+            <div id="identite">
+              <div id="personne">Pascal SCALART </div>
+              <div id="service-fonction"> <span id="fonction">Responsable
+                  Pôle Électronique </span> <span id="service"> </span>
+              </div>
+            </div>
+            <div id="contact">
+              <div id="phone">
+                <div class="fix" title="Téléphone" rel=""><span>Tél. </span>+33
+                  2 96 46 90 74</div>
+                <div class="sec" title="Secrétariat" rel=""><span>Sec. </span>+33
+                  2 96 46 90 00</div>
+                <div class="fax" title="Fax" rel=""><span>Fax </span>+33
+                  2 96 46 90 75</div>
+              </div>
+              <div id="mail">
+                <div><a href="mailto:pascal.scalart@enssat.fr">pascal.scalart@enssat.fr</a></div>
+                <div><a href="mailto:responsable.eii@enssat.fr">responsable.eii@enssat.fr</a></div>
+              </div>
+              <div id="web"><a href="http://www.enssat.fr">www.enssat.fr</a></div>
+            </div>
+          </div>
+          <div id="ecole">
+            <div id="logo"> <a href="http://www.enssat.fr"> <img
+                  src="imap-message://mauric%2Ecaceres%40gmail%2Ecom@imap.googlemail.com/INBOX#3759?header=saveas&part=1.1.2.3&filename=Enssat_logo.png"></a>
+            </div>
+            <div id="distribution"> 6 rue Kerampont - CS 80518 <br>
+              22305 Lannion Cedex - France </div>
+            <div id="pied"> </div>
+          </div>
+          <div id="tutelle">
+            <div> <a href="http://www.univ-rennes1.fr"> <img
+                  class="logo_ur1"
+                  src="imap-message://mauric%2Ecaceres%40gmail%2Ecom@imap.googlemail.com/INBOX#3759?header=saveas&part=1.1.2.4&filename=UR1_logo.png"></a>
+            </div>
+            <div> <a href="http://www.mines-telecom.fr"> <img
+                  class="logo_imt"
+                  src="imap-message://mauric%2Ecaceres%40gmail%2Ecom@imap.googlemail.com/INBOX#3759?header=saveas&part=1.1.2.5&filename=IMT_logo.png"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+</body>
+</html>

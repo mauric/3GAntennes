@@ -1,0 +1,282 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>exo2</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-10-15"><meta name="DC.source" content="exo2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">clear <span class="string">all</span>; <span class="comment">% effacement de toutes les variables de l&#8217;espace travail</span>
+close <span class="string">all</span>; <span class="comment">% fermeture de tous les fichiers (&eacute;ventuellement) ouverts</span>
+<span class="keyword">global</span> NOMBRE_ANTENNES; <span class="comment">% nombre total de capteurs de l&#8217;antenne</span>
+<span class="keyword">global</span> BINARY_DATA_RATE; <span class="comment">% d&eacute;bit de la source binaire transmise</span>
+<span class="keyword">global</span> FACTEUR_SURECH; <span class="comment">% facteur de sur-&eacute;chantillonnage au r&eacute;cepteur</span>
+<span class="keyword">global</span> ROLL_OFF_FACTOR; <span class="comment">% facteur de retomb&eacute;e des filtres en cosinus sur-&eacute;l&eacute;v&eacute;</span>
+<span class="keyword">global</span> SAMPLING_FREQ; <span class="comment">% fr&eacute;quence d&#8217;&eacute;chantillonage du signal au r&eacute;cepteur</span>
+<span class="keyword">global</span> BAUD_RATE; <span class="comment">% rapidit&eacute; de modulation des donn&eacute;es transmises</span>
+<span class="comment">%=============================================================================</span>
+<span class="comment">% 1- Exemple d&#8217;initialisation des ces param&egrave;tres</span>
+<span class="comment">%=============================================================================</span>
+ROLL_OFF_FACTOR=0.3;
+NOMBRE_ANTENNES=10;
+FACTEUR_SURECH=2;
+BANDWIDTH=200e3;
+DUREE_SYMBOLE=1/BANDWIDTH;
+BAUD_RATE=1/DUREE_SYMBOLE;
+SAMPLING_FREQ=FACTEUR_SURECH*BAUD_RATE;
+d_sur_lambda = [.125 .25 .5];
+M = 16;
+<span class="comment">% Th&eacute;oriquement, en programmant la formule (2.8) du poly. Faire l'analyse sous</span>
+<span class="comment">% Matlab du diagramme de l'antenne &eacute;l&eacute;mentaire comme indiqu&eacute; sur le poly (exercice 2.2).</span>
+<span class="comment">% Le tracer en lin&eacute;aire (le module de C au carr&eacute; exprim&eacute; en dB en fonc1on de Phi) puis en</span>
+<span class="comment">% coordonn&eacute;es polaire (avec le programme TracePolar.m en ex&eacute;cutant TracePolar(Phi, abs(C), -50)</span>
+<span class="comment">% o&ugrave; Phi est un vecteur d'angles, et o&ugrave; C est un vecteur stockant la r&eacute;ponse de</span>
+<span class="comment">% l'antenne obtenue pour ces angles.</span>
+
+<span class="comment">%toujours un vecteur c'est un vecteur colonne</span>
+
+
+
+nombre_points = 300;
+phi = linspace(-pi/2,pi/2,nombre_points);
+v = zeros(M,1);<span class="comment">%</span>
+
+M_const = 1/M^0.5;
+w = ones(16,1)*M_const;
+<span class="keyword">for</span> j = 1:3
+    <span class="keyword">for</span> i = 1:size(phi,2)
+        <span class="keyword">for</span> m = 1:size(v,1)
+         v(m) = M_const*exp(-1i*2*pi*d_sur_lambda(j)*(m-1)*sin(phi(i)));
+        <span class="keyword">end</span>
+        C(i) = w'*v;
+    <span class="keyword">end</span>
+
+    C = abs(C).^2;
+    figure(); grid <span class="string">on</span>
+    plot(phi,(C));
+    figure();
+    TracePolar(phi,(C), -50);
+<span class="keyword">end</span>
+
+<span class="comment">%=============================================================================</span>
+<span class="comment">% 2- G&eacute;n&eacute;ration des signaux sur l&#8217;ensemble des capteurs</span>
+<span class="comment">%=============================================================================</span>
+<span class="comment">%</span>
+<span class="comment">% Exp&eacute;rimentalement (exercice 2.3). U1liser le programme GeneSignaux.m (cf. gure ci-dessous)</span>
+<span class="comment">% pour obtenir les signaux sur les NOMBRE_ANTENNES antennes &eacute;l&eacute;mentaires au sein</span>
+<span class="comment">% de la matrice d&eacute;nomm&eacute;e Sig</span>
+
+Phis = 0; <span class="comment">%20*pi/180; % dangle d&#8217;incidence du signal utile</span>
+Phi1 = -30*pi/180 <span class="comment">% angle d&#8217;incidence du premier interf&eacute;rent</span>
+Phi2 = 60*pi/180 <span class="comment">%  angale d&#8217;incidence du second interf&eacute;rent</span>
+RSB = 15; <span class="comment">% rapport de puissance (en dB) entre le signal utile</span>
+<span class="comment">% et le bruit au niveau de chaque capteur</span>
+RSI1 = 2 <span class="comment">% rapport de puissance (en dB) entre le signal utile et l&#8217;interf&eacute;rent n?1</span>
+RSI2 = 3 <span class="comment">% rapport de puissance (en dB) entre le signal utile et l&#8217;interf&eacute;rent n?2</span>
+[MatriceR,Sig,BinaireIn,PenteSCurve] = GeneSignaux(Phis,Phi1,Phi2,RSB,RSI1,RSI2);
+</pre><pre class="codeoutput">
+Phi1 =
+
+   -0.5236
+
+
+Phi2 =
+
+    1.0472
+
+
+RSI1 =
+
+     2
+
+
+RSI2 =
+
+     3
+
+
+nbsymb =
+
+       25000
+
+
+ans =
+
+       25000           1
+
+
+ans =
+
+       50000           1
+
+
+PenteSCurve =
+
+   -2.4913
+
+
+ans =
+
+     1
+     1
+     1
+     1
+     1
+     1
+     1
+     1
+     1
+     1
+
+
+ans =
+
+       50000           1
+
+</pre><img vspace="5" hspace="5" src="exo2_01.png" alt=""> <img vspace="5" hspace="5" src="exo2_02.png" alt=""> <img vspace="5" hspace="5" src="exo2_03.png" alt=""> <img vspace="5" hspace="5" src="exo2_04.png" alt=""> <img vspace="5" hspace="5" src="exo2_05.png" alt=""> <img vspace="5" hspace="5" src="exo2_06.png" alt=""> <img vspace="5" hspace="5" src="exo2_07.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+clear all; % effacement de toutes les variables de l’espace travail
+close all; % fermeture de tous les fichiers (éventuellement) ouverts
+global NOMBRE_ANTENNES; % nombre total de capteurs de l’antenne
+global BINARY_DATA_RATE; % débit de la source binaire transmise
+global FACTEUR_SURECH; % facteur de sur-échantillonnage au récepteur
+global ROLL_OFF_FACTOR; % facteur de retombée des filtres en cosinus sur-élévé
+global SAMPLING_FREQ; % fréquence d’échantillonage du signal au récepteur
+global BAUD_RATE; % rapidité de modulation des données transmises
+%=============================================================================
+% 1- Exemple d’initialisation des ces paramètres
+%=============================================================================
+ROLL_OFF_FACTOR=0.3;
+NOMBRE_ANTENNES=10;
+FACTEUR_SURECH=2;
+BANDWIDTH=200e3;
+DUREE_SYMBOLE=1/BANDWIDTH;
+BAUD_RATE=1/DUREE_SYMBOLE;
+SAMPLING_FREQ=FACTEUR_SURECH*BAUD_RATE;
+d_sur_lambda = [.125 .25 .5];
+M = 16;
+% Théoriquement, en programmant la formule (2.8) du poly. Faire l'analyse sous 
+% Matlab du diagramme de l'antenne élémentaire comme indiqué sur le poly (exercice 2.2).
+% Le tracer en linéaire (le module de C au carré exprimé en dB en fonc1on de Phi) puis en
+% coordonnées polaire (avec le programme TracePolar.m en exécutant TracePolar(Phi, abs(C), -50)
+% où Phi est un vecteur d'angles, et où C est un vecteur stockant la réponse de
+% l'antenne obtenue pour ces angles.
+
+%toujours un vecteur c'est un vecteur colonne
+
+ 
+
+nombre_points = 300;
+phi = linspace(-pi/2,pi/2,nombre_points);
+v = zeros(M,1);%
+
+M_const = 1/M^0.5;
+w = ones(16,1)*M_const;
+for j = 1:3
+    for i = 1:size(phi,2)
+        for m = 1:size(v,1)
+         v(m) = M_const*exp(-1i*2*pi*d_sur_lambda(j)*(m-1)*sin(phi(i)));  
+        end
+        C(i) = w'*v;
+    end
+
+    C = abs(C).^2;
+    figure(); grid on
+    plot(phi,(C));
+    figure();
+    TracePolar(phi,(C), -50);
+end
+
+%=============================================================================
+% 2- Génération des signaux sur l’ensemble des capteurs
+%=============================================================================
+% 
+% Expérimentalement (exercice 2.3). U1liser le programme GeneSignaux.m (cf. gure ci-dessous)
+% pour obtenir les signaux sur les NOMBRE_ANTENNES antennes élémentaires au sein 
+% de la matrice dénommée Sig
+
+Phis = 0; %20*pi/180; % dangle d’incidence du signal utile
+Phi1 = -30*pi/180 % angle d’incidence du premier interférent
+Phi2 = 60*pi/180 %  angale d’incidence du second interférent
+RSB = 15; % rapport de puissance (en dB) entre le signal utile
+% et le bruit au niveau de chaque capteur
+RSI1 = 2 % rapport de puissance (en dB) entre le signal utile et l’interférent n?1
+RSI2 = 3 % rapport de puissance (en dB) entre le signal utile et l’interférent n?2
+[MatriceR,Sig,BinaireIn,PenteSCurve] = GeneSignaux(Phis,Phi1,Phi2,RSB,RSI1,RSI2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>

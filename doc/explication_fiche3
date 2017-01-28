@@ -1,0 +1,29 @@
+ 
+ Enssat_logo.png UR1_logo.png IMT_logo.png Fiche n°3 - Deuxième optimisation.pdf
+Bonjour,
+
+ci-joint une version préliminaire de la fiche n°3 conduisant à la notion 
+d'antenne à minimum de variance.
+Avec ceci (et avec la méthode que je vous ai montré à 14:00 pour 
+calculer Ri+b), vous pouvez :
+
+ 1. calculer *W*MV pour une configuration donnée (Phis, Phi1, Phi2, RSB,
+    RSI1, RSI2)
+ 2. calculer le diagramme d'antenne *C*(phi)
+
+  * Comparer les résultats avec ceux obtenus avec *W*fa
+      o dans le cas sans bruit (RSB = 300 dB) et sans interférents (i.e.
+        RSI1, RSI2=300 dB)
+      o dans le cas avec bruit (RSB = 7 dB)  mais sans interférents
+        (i.e. RSI1, RSI2=300 dB)
+  * refaire les 2 étapes précédentes 1 et 2 pour différentes valeurs de
+    RSI1, RSI2 (lorsque ces paramètres valent 300 dB, puis lorsqu'il
+    valent -2 à -3 dB)
+  * refaire les 2 étapes précédentes 1 et 2 pour différentes valeurs de
+    Phi1, Phi2 en faisant progressivement tendre Phi1 et/ou Phi2 vers
+    Phis ? Dans le cas où l'antenne *W*fa commence à donner de mauvais
+    résultats, tripler alors le nombre d'éléments de l'antenne. Que se
+    passe-t-il ?
+
+Je vous donne une version finalisée de la fiche n°3 dans les prochains 
+jours.
