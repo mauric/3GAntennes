@@ -1,0 +1,27 @@
+ 
+Une fois que vous avez analysé les conditions de repliement spatial, il faut que vous ayez dans vos programme Matlab une paramètre d_sur_lamda qui correspondra au rapport de la distance inter-capteur à lambda (longueur d'onde). En fait, le programme ne connait ni d, ni lambda, mais on va fixer le rapport entre ces deux quantité à des valeurs telles que 1/2, 1/4, ou 1/8. Une fois cela fait, il vous faut :
+Théoriquement, en programmant la formule (2.8) du poly. Faire l'analyse sous Matlab du diagramme de l'antenne élémentaire comme indiqué sur le poly (exercice 2.2). Le tracer en linéaire (le module de C au carré exprimé en dB en fonction de Phi) puis en coordonnées polaire (avec le programme TracePolar.m en exécutant TracePolar(Phi, abs(C), -50)  où Phi est un vecteur d'angles, et où C est un vecteur stockant la réponse de l'antenne obtenue pour ces angles. 
+Expérimentalement (exercice 2.3). Utiliser le programme GeneSignaux.m (cf. figure ci-dessous) pour obtenir les signaux sur les NOMBRE_ANTENNES antennes élémentaires au sein de la matrice  dénommée Sig 
+            >> [MatriceIB,MatriceS,Sig,BinaireIn,PenteSCurve]=GeneSignaux(Phis,Phi1,Phi2,RSB,RSI1,RSI2)
+
+ Je vous expliquerai ultérieurement comment on introduit des interférents dans la simulation. Pour l'instant, on introduit uniquement les signaux utiles issus de la source S ainsi que du bruit sur les signaux captés. Il faudra alors modifier les paramètres donnés page 24 selon :
+ on choisit le niveau de bruit (relativement à celui du signal utile): 
+donc on fixe le rapport signal-à-bruit RSB à une valeur voulue (entre 30 et 0 dB)
+il n'y a pas d’interférent n°1 :
+ donc le rapport signal-à-interférent n°1 RSI1 ---> infini (300 dB suffira)
+on met n'importe quelle direction d'arrivée de l'interférent n°1 : Phi1 = -30 degrés *(pi/180)
+il n'y a pas d’interférent n°2 : 
+donc le rapport signal-à-interférent n°2 RSI2 ---> infini (300 dB suffira)
+on met n'importe quelle direction d'arrivée de l'interférent n°2 : Phi2 = +60 degrés *(pi/180)
+on choisit la direction de la source utile S : 
+donc on fixe Phis à une valeur dans l'intervalle [-90°,+90°] * (pi/180)
+   Pour cela , on fixera : 
+le facteur de retombée du filtre d'émission/réception (1/2 Nyquist) : ROLL_OFF_FACTOR entre 0 et 1
+le nombre d'antennes NOMBRE_ANTENNES
+le facteur de sur-échantillonnage (cf. EII2) : FACTEUR_SURECH a une valeur paire 2, 4, 6, 8, 10, 16...
+la bande passante du signal à BANDWIDTH=200e3 soit 200kHz (ceci est fixé arbitrairement!)
+    et donc, on aura toujours (cf. EII2)
+
+    DUREE_SYMBOLE=1/BANDWIDTH;
+    BAUD_RATE=1/DUREE_SYMBOLE;
+    SAMPLING_FREQ=FACTEUR_SURECH*BAUD_RATE;

@@ -1,0 +1,7 @@
+\select@language {french}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{One}{2}{0}{1}
+\beamer@sectionintoc {2}{Corps}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{One}{4}{0}{2}
+\beamer@sectionintoc {3}{FIN}{5}{0}{3}
+\beamer@subsectionintoc {3}{1}{One}{5}{0}{3}
