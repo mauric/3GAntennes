@@ -1,7 +1,7 @@
 function    [MatriceIB,MatriceS,Sig,BinaireIn,PenteSCurve]=GeneSignaux(Phis,Phi1,Phi2,RSB,RSI1,RSI2)
 % .
 %
-%	[Y] = DIFF_ENC(X,DELAY,INITIAL) generates the output sequence Y from X
+%	[Y] = DIFF_ENC(X,DELAY,INITIAL) generates the output sequence Y from X 
 %		such that {Y(n) = X(n) (xor) X(n-DELAY), n = 1,2,...}
 %		using initial values in INITIAL for X(0),X(-1),...,X(1-DELAY).
 %		If X is the input sequence with N data points, Y will be the
@@ -45,20 +45,20 @@ global BAUD_RATE;
 
 
 %==========================================================================
-% Param tres li s aux mobiles et interf rents
+% Param�tres li�s aux mobiles et interf�rents
 %==========================================================================
-% simule 0.25 ms de signal ce qui g n re un nombre d' chantillons complexes
-%  gal    0.25 ms *Fe
+% simule 0.25 ms de signal ce qui g�n�re un nombre d'�chantillons complexes
+% �gal �  0.25 ms *Fe 
 %
 nbbits = 50000;
 BW = 200e3;
-Ts = 1/BW;
+Ts = 1/BW; 
 R=1/Ts;
 Tb=Ts/2;
 D=1/Tb;
 Fe=FACTEUR_SURECH*R;
 
-% cr ation du train binaire
+% cr�ation du train binaire
 BinaireIn=round(rand(nbbits,1));
 trbinRe=diff_enc(BinaireIn(1:2:end),1);
 trbinIm=diff_enc(BinaireIn(2:2:end),1);
@@ -66,7 +66,7 @@ trbinIm=diff_enc(BinaireIn(2:2:end),1);
 symb =  (1-2*trbinRe(1:end-1)) + sqrt(-1)*(1-2*trbinIm(1:end-1));
 nbsymb = length(symb)
 
-% sur chantillonnage
+% sur�chantillonnage
 symbsurech = zeros(FACTEUR_SURECH*nbsymb,1);
 size(symb)
 size(symbsurech)
@@ -79,11 +79,11 @@ if (FACTEUR_SURECH ==1)
 else
     filtre = rcosine(R,Fe,'fir/sqrt',ROLL_OFF_FACTOR);
     signalbdb = filter(filtre, 1, symbsurech);
-end;
+end;    
 nbech = length(signalbdb);
 
 %=================================
-% calcul parametres du r cepteur
+% calcul parametres du r�cepteur
 %=================================
 z=zeros(1,5000);
 z(2500)=1+1*i;
@@ -118,15 +118,15 @@ for antenne=1:NOMBRE_ANTENNES-1
 end;
 
 
-% sur chantillonnage
+% sur�chantillonnage
 K=20;
-nbre=nbsymb/K; % BP= 1 / dur e symbole de l'interf rent = K* BP du signal utile
+nbre=nbsymb/K; % BP= 1 / dur�e symbole de l'interf�rent = K* BP du signal utile
 interfer1=randn(1,nbre)+j*randn(1,nbre);
 interfer1surech = zeros(FACTEUR_SURECH*nbsymb,1);
 interfer1surech(1:K*FACTEUR_SURECH:end) = interfer1;
 
 K=5;
-nbre=nbsymb/K; % BP= 1 / dur e symbole de l'interf rent = K* BP du signal utile
+nbre=nbsymb/K; % BP= 1 / dur�e symbole de l'interf�rent = K* BP du signal utile
 interfer2=randn(1,nbre)+j*randn(1,nbre);
 interfer2surech = zeros(FACTEUR_SURECH*nbsymb,1);
 interfer2surech(1:K*FACTEUR_SURECH:end) = interfer2;
@@ -145,13 +145,13 @@ RSB=10^(RSB/10);
 Psignal=mean(signalbdb.^2);
 sigma2=Psignal/RSB;
 
-% generation interferent   -30  %
+% generation interferent � -30� %
 RSI1=10^(RSI1/10);
 PowerI1=mean(interfer1.^2);
 CAG1=sqrt((Psignal/RSI1)/PowerI1);;
 interfer1 = interfer1 * CAG1;
 
-% generation interferent   +60  %
+% generation interferent � +60� %
 RSI2=10^(RSI2/10);
 PowerI2=mean(interfer2.^2);
 CAG2=sqrt((Psignal/RSI2)/PowerI2);;
@@ -176,22 +176,9 @@ end;
 %  MatriceR=MatriceR+sigma2*diag(ones(1,NOMBRE_ANTENNES));
 %  MatriceR=MatriceR+mean(abs((signalbdb).^2))*dphis*dphis';
 %  MatriceR=MatriceR+mean(abs((interfer2).^2))*dphi2*dphi2'+mean(abs((interfer1).^2))*dphi1*dphi1';
-%
+% 
 MatriceR=(1/length(signalbdb))*(Sig*Sig');
 MatriceS=(1/length(signalbdb))*(SigUtile*SigUtile');
 MatriceIB=(1/length(signalbdb))*(SigBruitInterferent*SigBruitInterferent');
 
-%code rajoute pour moi
-%========================================================
-%calcule de la sortie y
-M = 16;
-w = ones(16,1)*1/M^0.5;
-y = zeros(1,size(Sig,2));
-for id =1:size(Sig,2)
-    y(id) = w'* Sig(:,id);
-end
 
-%diagramme de l'oeil pour l' entree
- eyediagram(Sig(1,:),2*FACTEUR_SURECH) ;
-% %diagramme de l'oeil pour la sortie
- eyediagram(y,2*FACTEUR_SURECH) ;

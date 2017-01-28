@@ -10,56 +10,190 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{color}
-\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage[framed]{matlab-prettifier}
 \usepackage{caption}
 \usepackage{subcaption}
-
-
-
+\usepackage[acronym]{glossaries}
+\usepackage{minitoc}
+\usepackage{blindtext}
 
 
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
 \definecolor{mylilas}{RGB}{170,55,241}
 
 \usepackage{listings}
-	
+
 \lstset{
 	style=Matlab-editor,
-	basicstyle         = \fontsize{9}{11}\ttfamily,
-	numberstyle       =\fontsize{9}{11}\ttfamily,
+	basicstyle         = \fontsize{8}{11}\ttfamily,
+	numberstyle       =\fontsize{8}{11}\ttfamily,
 	%backgroundcolor=\color{gray},
-	mlshowsectionrules = true,
+	mlshowsectionrules = false,
 	rangeprefix        = \%\ 
 }
-
+{\tiny }
 
 \definecolor{lightgray}{gray}{0.5}
 \setlength{\parindent}{0pt}
-\usepackage[left=2.50cm, right=1.00cm, top=1.00cm, bottom=1.00cm]{geometry}
+\usepackage[left=3.50cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+
+
+
+
+\makeglossaries
+%  GLOSSAIRE DE FORMULES
+%\newglossaryentry{formula}
+%{
+%	name=formula,
+%	description={A mathematical expression}
+%}
+%
+\newglossaryentry{pi}{%
+	name={$\pi=\frac{C}{d}$},
+	text={\pi=\frac{C}{d}},
+	sort=pi,
+	description={ratio of circumference of circle to its diameter}}
+
+\newglossaryentry{xmchapeu}{%
+	name={$\hat{x}_m(t) $},
+	text={$\hat{x}_m(t) $},
+	sort=xm,
+	description={signal d'entrée au filtre dans le capter m}}
+
+\newglossaryentry{snapshot}{%
+	name={\mathbf{x}(n)},
+	text={\mathbf{x}(n) = [x_1(n) x_2(n)...x_M(n) ]^T},
+	sort=x,
+	description={observation du vecteur des échantillon de chaque voie}}
+
+\newglossaryentry{v_phi}{%
+	name={\mathbf{v}(\phi)},
+	text={\mathbf{v}(\phi) = \frac{1}{\sqrt{M}}[1 e^{-j^\frac{2\pi}{\lambda}d sin(\phi)} ...e^{-j^\frac{2\pi}{\lambda}(M-1)d sin(\phi)}]},
+	sort=x,
+	description={vecteur de décalage}}
+
+\newacronym{gcd}{GCD}{Greatest Common Divisor}
+\newacronym{lcm}{LCM}{Least Common Multiple}
+\newacronym{mcap}{M}{nombre de capteurs}
+%
+%%\begin{document}
+%	
+%	The \Gls{latex} typesetting markup language is specially suitable 
+%	for documents that include \gls{maths}. \Glspl{formula} are 
+%	rendered properly an easily once one gets used to the commands.
+%	
+%	Given a set of numbers, there are elementary methods to compute 
+%	its \acrlong{gcd}, which is abbreviated \acrshort{gcd}. This 
+%	process is similar to that used for the \acrfull{lcm}.
+%	
+%	\clearpage
+%	\printglossary[type=\acronymtype]
+%	\printglossary
+%%\end{document}
+
+
+
+
 \author{Mauricio Caceres}
 \title{Antennes Intelligentes}
+
+
 \begin{document}
 
 \maketitle
+\dominitoc
 \tableofcontents
+
+\clearpage
+\printglossary
 \part{Front-end Radio et Traitement Numérique
 	d'antennes}
 
 \chapter{Introduction aux antennes intelligentes}
+\minitoc
+
 \section{Description des applications}
 
 \chapter{Notions fondamentales}
-\section{Exercise Personnel 2.1 - Conditions de repliement spatial}
+\minitoc
+\section{Modélisation des signaux au niveau des capteurs}
 
-Ainsi, par analogie au théorème de Shannon établi pour l?échantillonnage dans le domaine temporel, il existe certaines contraintes sur la fréquence
-d'échantillonnage spatial pour éliminer le repliement spatial (et non plus spectral).\\
+Dans notre analyse le modèle d'antenne linéaire uniforme sera utilisé. Ce modèle comprenne une signal 
+qui utile \gls{xmchapeu} qui arrive d'une direction de propagation $ \phi $. Au niveua du capteur \textit{m} 
+on a le signal \gls{xmchapeu} à temps continu avec le bruit thermique et un signal utile modulé à une fréquence 
+porteuse $fo$
+
+\begin{figure}[!]
+	\right
+	\includegraphics[width=3cm]{../exo2_5}
+	\caption{}
+	\label{fig:exo25}
+\end{figure}
+
+
+
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.99\linewidth]{modelosignal}
+	\caption{Récepteur numérique sur un capteur}
+	\label{fig:recepteurNumerique}
+\end{figure}
+
+Le \gls{mcap} de notre récepteur recoivent une signal en faisant l'hypothese de champ lointain, l'ensemble de signal
+echantillonées spatialement forment ce qu'on appelle un \textit{array snapshot}. C'est un vecteur qui contient justement
+une observation des signaux:
+\begin{equation}
+	\gls{snapshot}
+	\label{eq:snapshot}
+\end{equation}
+Chacune de ce composantes ont la expression suivante
+
+\begin{equation}\label{eq:composantex}
+	\hat{x}_m(t)=\hat{x}_1(t)e^{-j^\frac{2\pi}{\lambda}(D_m-D)sin(\phi)}
+\end{equation}
+
+On utilisera cette expression assez souvent
+\begin{equation}\label{eq:v_phi}
+\gls{v_phi}
+\end{equation}
+C'est un vecteur en contenant information par rapport au décalage de chaque capteur par rapport au première.\\
+On peut exprimer alors le vecteur d'observation comme:
+
+\begin{equation}\label{eq:snapshot2}
+ \mathbf{x}(n) = \sqrt{M}\mathbf{v}(\phi)x_1(n)
+\end{equation}
+
+\section{Echantillonnage spatial}
+Une réseau d'antennes distribuée dans un espace donnée, qui reçoive des fronts d'ondes de propagation à une fréquence porteuse donnée et en train de faire un échantillonnage spatial. Avec plus de densité d'antennes sur ce espace là on a
+un échantillonnage plus précis dans ce domaine spatial (analogue au domaine fréquentiel).\\
+
+\subsection{Conditions de repliement spatial}
+Pour ne pas avoir ambiguïtés entre les signaux reçues à cause de repliement spatial notre parametre a modifier est l?espacement inter-élément selon la longuer d'onde souhaité à recevoir.
+
+Ainsi, par analogie au théorème de Shannon établi pour l'échantillonnage dans le domaine temporel, il existe certaines contraintes sur la fréquence d'échantillonnage spatial 
 Sachant que les fréquences spatiales normalisées sont non-ambiguës pour
 $ -1/2 \leq u \leq +1/2 $ et que l'angle d'arrivée de l´onde est compris entre
-$ -\pi/2 \leq \phi \leq +\pi/2 $.
+$ -\pi/2 \leq \phi \leq +\pi/2 $.\\
+Nous allons faire un raisonnement identique au cas de l?échantillonnage temporel afin de déterminer, en fonction de la valeur de la longueur d?onde
+$\lambda$, les conditions nécessaires sur l?espacement inter-élément d afin d?assurer une
+condition de non-repliement spatial.
+En déduire la valeur maximale de l?espacement inter-élément.
 
+Le théoreme de shqnnon-nyquist s'applique à l'échantillonage de fonction dépendant de tout type de variable indique alors que pour éviter tout phénoène de repliement, la fréquence spatiale d'échantillonage doit être supérieure ou égale
+au souble de la plus grande fréquence spatiale du spatial du signal traité. On a donc :
 
-
-\section{Exercise Personnel 2.2 - Diagrame de rayonnement}
+\begin{equation}\label{eq:shannon}
+	d \leq \frac{\lambda_0}{2}
+\end{equation}
+Donc la même condition de repliement par rapport au fréquence maximale est
+\begin{equation}\label{eq:shannon_max}
+	d \leq \frac{\lambda_min}{2} = \frac{\pi c}{\omega_{max}}
+\end{equation}
+\section{Diagrame de rayonnement}
 
 On considére une antenne formée de M = 16 capteurs identiques linéarment espacés avec une\\
 pondération uniforme c'est à dire $ \omega_m = 1/\sqrt{M}, m = 1,2,...,M  $\\
@@ -68,23 +202,17 @@ Le paramètre sera l'espace inter-élément sur lambda en forme de ratio parce qu'o
 à priori la magnitude de les deux.
 
 
+\section{Rapport signal à bruit en sortie}
+\blindtext
+
+
+\section{Diagramme de l'?il}
+
+
+
 
 
 \begin{lstlisting}[caption={Code puor initialisation des variables},label=code_initial]
-%% VARIABLES GLOBALES
-
-clc
-clear all; % effacement de toutes les variables de l?espace travail
-close all; % fermeture de tous les fichiers (éventuellement) ouverts
-global NOMBRE_ANTENNES; % nombre total de capteurs de l?antenne
-global BINARY_DATA_RATE; % débit de la source binaire transmise
-global FACTEUR_SURECH; % facteur de sur-échantillonnage au récepteur
-global ROLL_OFF_FACTOR; % facteur de retombée des filtres en cosinus sur-élévé
-global SAMPLING_FREQ; % fréquence d?échantillonage du signal au récepteur
-global BAUD_RATE; % rapidité de modulation des données transmises
-
-%% INIT PARAMETRES
-
 %=============================================================================
 % 1- Exemple d?initialisation des ces paramètres
 %=============================================================================
@@ -105,14 +233,6 @@ phi = linspace(-pi/2,pi/2,nombre_points);
 v = zeros(M,1);%
 
 M_const = 1/M^0.5;
-w = ones(16,1)*M_const;
-for j = 1:3
-	for i = 1:size(phi,2)
-			for m = 1:size(v,1)
-			v(m) = M_const*exp(-1i*2*pi*d_sur_lambda(j)*(m-1)*sin(phi(i)));  
-			end
-	C(i) = w'*v;
-	end
 
 C = abs(C).^2;
 figure(); 
@@ -131,13 +251,13 @@ D´après ce code on obtien
 		\centering
 		\includegraphics[width=.99\linewidth]{../exo2_1}
 		\caption{Diagramme de rayonnement polaire en scale logaritmique}
-		\label{fig:sub1}
+		\label{fig:exo1_diagAntenne}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
 		\includegraphics[width=.99\linewidth]{../exo2_2}
 		\caption{Diagramme de rayonnement en escale linéaire}
-		\label{fig:sub2}
+		\label{fig:exo1_diagAntenne_lineal}
 	\end{subfigure}
 	\caption{Diagrammes correspondantes au parametrage de $ d/\lambda = 1/2 $}
 	\label{fig:test}

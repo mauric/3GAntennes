@@ -1,6 +1,8 @@
 %% ANTENNES INTELIGENTES TP
-
-
+%   Vecteur optimale :
+%
+%   w(m) = w(m)/abs(w(m));
+%
 %% VARIABLES GLOBALES
 
 
@@ -8,11 +10,11 @@ clc
 clear all; % effacement de toutes les variables de lï¿½espace travail
 close all; % fermeture de tous les fichiers (ï¿½ventuellement) ouverts
 global NOMBRE_ANTENNES; % nombre total de capteurs de lï¿½antenne
-global BINARY_DATA_RATE; % débit de la source binaire transmise
-global FACTEUR_SURECH; % facteur de sur-échantillonnage au récepteur
+global BINARY_DATA_RATE; % dï¿½bit de la source binaire transmise
+global FACTEUR_SURECH; % facteur de sur-ï¿½chantillonnage au rï¿½cepteur
 global ROLL_OFF_FACTOR; % facteur de retombï¿½e des filtres en cosinus sur-ï¿½lï¿½vï¿½
-global SAMPLING_FREQ; % fréquence déchantillonage du signal au récepteur
-global BAUD_RATE; % rapidité de modulation des donniées transmises
+global SAMPLING_FREQ; % frï¿½quence dï¿½ï¿½chantillonage du signal au rï¿½cepteur
+global BAUD_RATE; % rapiditï¿½ de modulation des donnï¿½es transmises
 
 %% INIT PARAMETRES
 
@@ -24,7 +26,7 @@ NOMBRE_ANTENNES=16;
 FACTEUR_SURECH=2;
 BANDWIDTH=200e3;
 DUREE_SYMBOLE=1/BANDWIDTH;
-BAUD_RATE=1/DUREE_SYMBOLE;
+BAUD_RATE=1/DUREE_SYMBOLE; 
 SAMPLING_FREQ=FACTEUR_SURECH*BAUD_RATE;
 d_sur_lambda =.5;
 M = 16;
@@ -34,41 +36,49 @@ M = 16;
 %% ALGORITHME SIMPLE DE 
  
 
-nombre_points = 200;    %nombre de points de la discretization
+nombre_points = 500;    %nombre de points de la discretization
 phi = linspace(-pi/2,pi/2,nombre_points); 
 v = zeros(M,1);%
 
 angle_direction = pi/5;
-M_const = 1/M^0.5;
+M_const = 1/sqrt(M);
 w = ones(16,1);
 for m = 1:size(v,1) 
- w(m) = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(angle_direction));
- w(m) = w(m)/abs(w(m));
+ v(m) = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(angle_direction));
 end  
-
+ w = v./abs(v);
 for i = 1:size(phi,2)
     for m = 1:size(v,1) 
      v(m) = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(phi(i)));  
     end  
-    C(i) = w'*v;
+    C(i) = w'*v*v'*w;
 end
-C = abs(C).^2;
 
 %plot some data
 figure(); 
-plot(phi,(C),'LineWidth',1);
+plot(phi,(C),'-b','LineWidth',1);
 grid on
 legend('C(phi)', 'Location', 'SouthEast');
 xlabel('\phi');
-ylabel('|C(\phi)|');
+ylabel('|C(\phi)|');    
 title('Diagramme de Rayonnement');
+
+
+
 
 figure();
 TracePolar(phi,(C), -50);
 legend('C(phi)', 'Location', 'SouthEast');
-
 title('Diagramme de Rayonnement');
 
+
+
+loglog(phi,abs(C),'-b','LineWidth',1);
+grid on
+legend('C(phi)', 'Location', 'SouthEast');
+xlabel('log \phi');
+ylabel('log |C(\phi)|');    
+title('Diagramme de Rayonnement (log-log)');
 %% GENERATION DE SIGNALES
 
 %=============================================================================
@@ -82,14 +92,34 @@ RSB = 30; % rapport de puissance (en dB) entre le signal utile
 % et le bruit au niveau de chaque capteur
 RSI1 = 300 % rapport de puissance (en dB) entre le signal utile et lï¿½interfï¿½rent n?1
 RSI2 = 300 % rapport de puissance (en dB) entre le signal utile et lï¿½interfï¿½rent n?2
+[MatriceR,MatriceS,Sig,BinaireIn,PenteSCurve] = ...
+    GeneSignaux(Phis,Phi1,Phi2,RSB,RSI1,RSI2);
 
-[MatriceR,Sig,BinaireIn,PenteSCurve] = GeneSignaux(Phis,Phi1,Phi2,RSB,RSI1,RSI2);
+M = 16;
+y = zeros(1,size(Sig,2));
+for id =1:size(Sig,2)
+    y(id) = w'* Sig(:,id);
+end
+
+%diagramme de l'oeil pour l' entree
+ eyediagram(Sig(1,:),FACTEUR_SURECH) ;
+% %diagramme de l'oeil pour la sortie
+ eyediagram(y,2*FACTEUR_SURECH) ;
+
+ %%cacul sans optimisation pour
+% w = ones(16,1)*1/M^0.5;% 
+% y = zeros(1,size(Sig,2));
+% for id =1:size(Sig,2)
+%     y(id) = w'* Sig(:,id);
+% end
 
 
+% %diagramme de l'oeil pour la sortie
+ eyediagram(y,FACTEUR_SURECH) ;
 %% RAPPORT  PUISSANCE SIGNAl - BRUIT
 
 %output
-a = 3.0075;
+a = 3.0075;s
 b = 3.03525;
 %input
 aa = 0.73625;
@@ -98,9 +128,6 @@ Ps_out = a*a+b*b;
 Ps_in  = aa*aa+bb*bb;
 
 G = Ps_out/Ps_in
-
-
-
 
 %% DOCUMENTATION
 

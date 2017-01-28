@@ -1,10 +1,15 @@
-\contentsline {part}{I\hspace {1em}Front-end Radio et Traitement Num\'erique d'antennes}{2}
-\contentsline {chapter}{\numberline {1}Introduction aux antennes intelligentes}{3}
-\contentsline {section}{\numberline {1.1}Description des applications}{3}
-\contentsline {chapter}{\numberline {2}Notions fondamentales}{4}
-\contentsline {section}{\numberline {2.1}Exercise Personnel 2.1 - Conditions de repliement spatial}{4}
-\contentsline {section}{\numberline {2.2}Exercise Personnel 2.2 - Diagrame de rayonnement}{4}
-\contentsline {section}{\numberline {2.3}Exercice Personnel 2.3 - Analyse du bruit}{6}
-\contentsline {chapter}{\numberline {3}Premi\`ere Optimisation}{8}
-\contentsline {section}{\numberline {3.1}Exercice Personnel 3.11 - Solution Optimale}{8}
-\contentsline {section}{\numberline {3.2}Exercice Personnel 3.2 - Analyse de la solution}{8}
+\contentsline {part}{I\hspace {1em}Front-end Radio et Traitement Num\'erique d'antennes}{3}
+\contentsline {xpart}{Front-end Radio et Traitement Num\'erique d'antennes}{4}
+\contentsline {chapter}{\numberline {1}Introduction aux antennes intelligentes}{4}
+\contentsline {section}{\numberline {1.1}Description des applications}{4}
+\contentsline {chapter}{\numberline {2}Notions fondamentales}{5}
+\contentsline {section}{\numberline {2.1}Mod\'elisation des signaux au niveau des capteurs}{5}
+\contentsline {section}{\numberline {2.2}Echantillonnage spatial}{6}
+\contentsline {subsection}{\numberline {2.2.1}Conditions de repliement spatial}{6}
+\contentsline {section}{\numberline {2.3}Diagrame de rayonnement}{6}
+\contentsline {section}{\numberline {2.4}Rapport signal \`a bruit en sortie}{6}
+\contentsline {section}{\numberline {2.5}Diagramme de l'?il}{7}
+\contentsline {section}{\numberline {2.6}Exercice Personnel 2.3 - Analyse du bruit}{9}
+\contentsline {chapter}{\numberline {3}Premi\`ere Optimisation}{11}
+\contentsline {section}{\numberline {3.1}Exercice Personnel 3.11 - Solution Optimale}{11}
+\contentsline {section}{\numberline {3.2}Exercice Personnel 3.2 - Analyse de la solution}{11}
