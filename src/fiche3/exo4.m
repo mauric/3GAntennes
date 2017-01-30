@@ -69,7 +69,7 @@ for i = 1:size(phi,2)
 end
 
 
-%plot some data
+%% plot some data
 figure(); 
 plot(phi,(C),'LineWidth',1);
 grid on
@@ -92,11 +92,10 @@ title('Diagramme de Rayonnement (log-log)');
 %% GENERATION DE SIGNALES
 
 %=============================================================================
-% 2- Gï¿½nï¿½ration des signaux sur lï¿½ensemble des capteurs
+% 2- Generation de signaux pour l´ensemble des capteurs
 %=============================================================================
 
-[MatriceR,MatriceS,x,BinaireIn,PenteSCurve] = ...
-    GeneSignaux(Phis,Phi1,Phi2,RSB,RSI1,RSI2);
+[MatriceR,MatriceS,x,BinaireIn,PenteSCurve] = GeneSignaux(Phis,Phi1,Phi2,RSB,RSI1,RSI2);
 
 y = zeros(1,size(x,2));
 for id =1:size(x,2)
@@ -121,7 +120,7 @@ Ps_in  = aa*aa+bb*bb;
 
 G = Ps_out/Ps_in
 
-%% Calcul du vecteur de pondÃ©rations optimales
+%% Calcul du vecteur de ponderations optimales
 
 
 
@@ -131,7 +130,7 @@ G = Ps_out/Ps_in
 
 h = get(0,'children');
 for i=length(h):-1:1
-  saveas(h(i), ['exo3_' num2str(length(h)+1-i)], 'png');
+  saveas(h(i), ['exo4_' num2str(length(h)+1-i)], 'png');
 end
 
 

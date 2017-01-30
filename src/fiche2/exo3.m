@@ -63,15 +63,10 @@ xlabel('\phi');
 ylabel('|C(\phi)|');    
 title('Diagramme de Rayonnement');
 
-
-
-
 figure();
 TracePolar(phi,(C), -50);
 legend('C(phi)', 'Location', 'SouthEast');
 title('Diagramme de Rayonnement');
-
-
 
 loglog(phi,abs(C),'-b','LineWidth',1);
 grid on
@@ -79,6 +74,8 @@ legend('C(phi)', 'Location', 'SouthEast');
 xlabel('log \phi');
 ylabel('log |C(\phi)|');    
 title('Diagramme de Rayonnement (log-log)');
+
+
 %% GENERATION DE SIGNALES
 
 %=============================================================================
