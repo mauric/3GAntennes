@@ -54,11 +54,13 @@ v2 = zeros(M,1);%
 
 M_const = 1/sqrt(M);
 w = ones(size(v,1),1);
+
 for m = 1:size(v,1)
  v1(m) = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(Phi1));
  v2(m) = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(Phi2));
  vs(m) = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(Phis));
 end  
+
 Rib = ((M/RSI2).*v1*v1'+(M/RSI2).*v2*v2'+(1/RSB).*eye(M));
 Rib_inv = inv(Rib);
 w = (Rib_inv*vs)/(vs'*Rib_inv*vs);
@@ -73,7 +75,7 @@ end
 
 %% plot some data
 figure(); 
-plot(phi,(C),'LineWidth',1);
+plot(phi,abs(C),'LineWidth',1);
 grid on
 legend('C(phi)', 'Location', 'SouthEast');
 xlabel('\phi');
@@ -81,10 +83,11 @@ ylabel('|C(\phi)|');
 title('Diagramme de Rayonnement');
 
 figure();
-TracePolar(phi,(C), -50);
+TracePolar(phi,abs(C), -50);
 legend('C(phi)', 'Location', 'SouthEast');
 title('Diagramme de Rayonnement');
 
+figure();
 loglog(phi,abs(C),'-b','LineWidth',1);
 grid on
 legend('C(phi)', 'Location', 'SouthEast');
