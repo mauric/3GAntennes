@@ -74,26 +74,28 @@ end
 
 
 %% plot some data
-figure(); 
-plot(phi,abs(C),'LineWidth',1);
-grid on
-legend('C(phi)', 'Location', 'SouthEast');
-xlabel('\phi');
-ylabel('|C(\phi)|');
-title('Diagramme de Rayonnement');
-
-figure();
-TracePolar(phi,abs(C), -50);
-legend('C(phi)', 'Location', 'SouthEast');
-title('Diagramme de Rayonnement');
-
-figure();
-loglog(phi,abs(C),'-b','LineWidth',1);
-grid on
-legend('C(phi)', 'Location', 'SouthEast');
-xlabel('log \phi');
-ylabel('log |C(\phi)|');    
-title('Diagramme de Rayonnement (log-log)');
+    %% plot some data
+    figure(k); 
+    subplot(1,3,1)
+    plot(phi,abs(C),'LineWidth',1);
+    grid on
+    legend('C(phi)', 'Location', 'SouthEast');
+    xlabel('\phi');
+    ylabel('|C(\phi)|');
+    title('Diagramme de Rayonnement');
+    
+    subplot(1,3,2)
+    TracePolar(phi,abs(C), -50);
+    legend('C(phi)', 'Location', 'SouthEast');
+    title('Diagramme de Rayonnement');
+    
+    subplot(1,3,3)
+    loglog(phi,abs(C),'-b','LineWidth',1);
+    grid on
+    legend('C(phi)', 'Location', 'SouthEast');
+    xlabel('log \phi');
+    ylabel('log |C(\phi)|');    
+    title('Diagramme de Rayonnement (log-log)');
 %% GENERATION DE SIGNALES
 
 %=============================================================================

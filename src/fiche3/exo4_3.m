@@ -133,14 +133,14 @@ G = Ps_out/Ps_in
 
 
 
-% 
-% % DOCUMENTATION
-% 
-% h = get(0,'children');
-% for i=length(h):-1:1
-%   saveas(h(i), ['exo42_' num2str(length(h)+1-i)], 'png');
-% end
-% 
+
+% DOCUMENTATION
+
+h = get(0,'children');
+for i=length(h):-1:1
+  saveas(h(i), ['exo42_' num2str(length(h)+1-i)], 'png');
+end
+
 
 
 
