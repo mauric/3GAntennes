@@ -53,13 +53,13 @@ figure('Units', 'pixels', ...
     'Position', [100 100 500 375]);
 plot(phi,(C),'LineWidth',1);
 grid()
-title('Initial Weights ','FontSize',12);
+%title('Initial Weights ','FontSize',12);
 
 
 figure()
 TracePolar(phi,(C), -50);
 grid()
-title('Final Weights ','FontSize',12);
+%title('Final Weights ','FontSize',12);
 
 
 end
