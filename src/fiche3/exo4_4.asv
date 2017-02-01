@@ -5,14 +5,14 @@
 %   w(m) = -------------------------
 %           v(phi)'inv(Rib)v(phi)
 %           
-% RSB = 300; % rapport de puissance (en dB) entre le signal utile
-% RSI1  y  RSI2 variable
+% Interference qui se rapproche a la source
+
 %% VARIABLES GLOBALES
 clc
 clear all; % effacement de toutes les variables de l�espace travail
 close all; % fermeture de tous les fichiers (�ventuellement) ouverts
 global NOMBRE_ANTENNES; % nombre total de capteurs de l�antenne
-global BINARY_DATA_RATE; % d�bit de la source binaire transmise
+global BINARY_DATA_RATE; % d bit de la source binaire transmise
 global FACTEUR_SURECH; % facteur de sur-�chantillonnage au r�cepteur
 global ROLL_OFF_FACTOR; % facteur de retomb�e des filtres en cosinus sur-�l�v�
 global SAMPLING_FREQ; % fr�quence d��chantillonage du signal au r�cepteur
@@ -40,10 +40,10 @@ Phi1 = -30*pi/180 % angle d�incidence du premier interf�rent
 Phi2 = 60*pi/180 %  angale d�incidence du second interf�rent
 RSB = 7; % rapport de puissance (en dB) entre le signal utile
 % et le bruit au niveau de chaque capteur
-RSI1 = linspace(300,-2,4); % rapport de puissance (en dB) entre le signal utile et l�interf�rent n?1
-RSI2 = linspace(300,-2,4); % rapport de puissance (en dB) entre le signal utile et l�interf�rent n?2
+RSI1 = 150; % rapport de puissance (en dB) entre le signal utile et l�interf�rent n?1
+RSI2 = 150; % rapport de puissance (en dB) entre le signal utile et l�interf�rent n?2
 %% CONSTRUCTION OF VECTEUR OPTIMALE
-k = 2;
+
     nombre_points = 200;    %nombre de points de la discretization
     phi = linspace(-pi/2,pi/2,nombre_points); 
     v = zeros(M,1);%
@@ -111,8 +111,10 @@ for id =1:size(x,2)
 end
 
 %diagramme de l'oeil pour l' entree
+figure()
  eyediagram(x(1,:),FACTEUR_SURECH) ;
 %diagramme de l'oeil pour la sortie
+figure()
  eyediagram(y,FACTEUR_SURECH);
 
 % RAPPORT  PUISSANCE SIGNAl - BRUIT

@@ -54,15 +54,13 @@ figure('Units', 'pixels', ...
 plot(phi,(C),'LineWidth',1);
 grid()
 title('Initial Weights ','FontSize',12);
-xlabel('Weight id','FontSize',12);
-ylabel('Weight value','FontSize',12);
+
 
 figure()
 TracePolar(phi,(C), -50);
 grid()
 title('Final Weights ','FontSize',12);
-xlabel('Weight id','FontSize',12);
-ylabel('Weight value','FontSize',12);
+
 
 end
 
@@ -76,9 +74,6 @@ plot(phi,CC(3,:),'-r','LineWidth',1);
 hold off
 grid on
 title('Initial Weights ','FontSize',12);
-xlabel('Weight id','FontSize',12);
-ylabel('Weight value','FontSize',12);
-
 
 
 
