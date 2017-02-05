@@ -6,37 +6,59 @@
 \headcommand {\beamer@subsectionentry {0}{1}{1}{2}{One}}\headcommand {\beamer@subsectionpages {2}{1}}
 \headcommand {\slideentry {1}{1}{0}{2/2}{}{0}}
 \headcommand {\beamer@framepages {2}{2}}
-\headcommand {\sectionentry {2}{Deuxi\IeC {\`e}me optimisation : le filtre \IeC {\`a} minimun de variance}{3}{Deuxi\IeC {\`e}me optimisation : le filtre \IeC {\`a} minimun de variance}{0}}
-\headcommand {\beamer@sectionpages {2}{2}}
-\headcommand {\beamer@subsectionpages {2}{2}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{3}{One}}\headcommand {\beamer@subsectionpages {3}{2}}
-\headcommand {\slideentry {2}{1}{0}{3/3}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{3}{One}}\headcommand {\beamer@subsectionpages {2}{2}}
+\headcommand {\slideentry {1}{2}{0}{3/3}{}{0}}
 \headcommand {\beamer@framepages {3}{3}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{4}{Exercise 4.1 : Probl\IeC {\`e}me d'optimisation}}\headcommand {\beamer@subsectionpages {3}{3}}
-\headcommand {\slideentry {2}{2}{1}{4/4}{Exercise 4.1 : Probl\IeC {\`e}me d'optimisation}{0}}
+\headcommand {\beamer@subsectionentry {0}{1}{3}{4}{One}}\headcommand {\beamer@subsectionpages {2}{3}}
+\headcommand {\slideentry {1}{3}{0}{4/4}{}{0}}
 \headcommand {\beamer@framepages {4}{4}}
-\headcommand {\beamer@subsectionentry {0}{2}{3}{5}{Exercise 4.2 : Analyse }}\headcommand {\beamer@subsectionpages {4}{4}}
-\headcommand {\slideentry {2}{3}{1}{5/5}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\beamer@subsectionentry {0}{1}{4}{5}{One}}\headcommand {\beamer@subsectionpages {2}{4}}
+\headcommand {\slideentry {1}{4}{0}{5/5}{}{0}}
 \headcommand {\beamer@framepages {5}{5}}
-\headcommand {\slideentry {2}{3}{2}{6/6}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\sectionentry {2}{Deuxi\IeC {\`e}me optimisation : le filtre \IeC {\`a} minimun de variance}{6}{Deuxi\IeC {\`e}me optimisation : le filtre \IeC {\`a} minimun de variance}{0}}
+\headcommand {\beamer@sectionpages {2}{5}}
+\headcommand {\beamer@subsectionpages {2}{5}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{6}{One}}\headcommand {\beamer@subsectionpages {6}{5}}
+\headcommand {\slideentry {2}{1}{0}{6/6}{}{0}}
 \headcommand {\beamer@framepages {6}{6}}
-\headcommand {\beamer@subsectionentry {0}{2}{4}{7}{One}}\headcommand {\beamer@subsectionpages {5}{6}}
-\headcommand {\slideentry {2}{4}{0}{7/7}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{7}{Exercise 4.1 : Probl\IeC {\`e}me d'optimisation}}\headcommand {\beamer@subsectionpages {6}{6}}
+\headcommand {\slideentry {2}{2}{1}{7/7}{Exercise 4.1 : Probl\IeC {\`e}me d'optimisation}{0}}
 \headcommand {\beamer@framepages {7}{7}}
-\headcommand {\beamer@subsectionentry {0}{2}{5}{8}{One}}\headcommand {\beamer@subsectionpages {5}{7}}
-\headcommand {\slideentry {2}{5}{0}{8/8}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{8}{Exercise 4.2 : Analyse }}\headcommand {\beamer@subsectionpages {7}{7}}
+\headcommand {\slideentry {2}{3}{1}{8/8}{Exercise 4.2 : Analyse }{0}}
 \headcommand {\beamer@framepages {8}{8}}
-\headcommand {\beamer@subsectionentry {0}{2}{6}{9}{One}}\headcommand {\beamer@subsectionpages {5}{8}}
-\headcommand {\slideentry {2}{6}{0}{9/9}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\slideentry {2}{3}{2}{9/9}{Exercise 4.2 : Analyse }{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\sectionentry {3}{FIN}{10}{FIN}{0}}
-\headcommand {\beamer@sectionpages {3}{9}}
-\headcommand {\beamer@subsectionpages {5}{9}}
-\headcommand {\beamer@subsectionentry {0}{3}{1}{10}{One}}\headcommand {\beamer@subsectionpages {10}{9}}
-\headcommand {\slideentry {3}{1}{0}{10/10}{}{0}}
+\headcommand {\slideentry {2}{3}{3}{10/10}{Exercise 4.2 : Analyse }{0}}
 \headcommand {\beamer@framepages {10}{10}}
-\headcommand {\beamer@partpages {1}{10}}
-\headcommand {\beamer@subsectionpages {10}{10}}
-\headcommand {\beamer@sectionpages {10}{10}}
-\headcommand {\beamer@documentpages {10}}
-\headcommand {\def \inserttotalframenumber {10}}
+\headcommand {\slideentry {2}{3}{4}{11/11}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\beamer@subsectionentry {0}{2}{4}{12}{One}}\headcommand {\beamer@subsectionpages {8}{11}}
+\headcommand {\slideentry {2}{4}{0}{12/12}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@subsectionentry {0}{2}{5}{13}{One}}\headcommand {\beamer@subsectionpages {8}{12}}
+\headcommand {\slideentry {2}{5}{0}{13/13}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\beamer@subsectionentry {0}{2}{6}{14}{One}}\headcommand {\beamer@subsectionpages {8}{13}}
+\headcommand {\slideentry {2}{6}{0}{14/14}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\beamer@subsectionentry {0}{2}{7}{15}{One}}\headcommand {\beamer@subsectionpages {8}{14}}
+\headcommand {\slideentry {2}{7}{0}{15/15}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\beamer@subsectionentry {0}{2}{8}{16}{One}}\headcommand {\beamer@subsectionpages {8}{15}}
+\headcommand {\slideentry {2}{8}{0}{16/16}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\beamer@subsectionentry {0}{2}{9}{17}{One}}\headcommand {\beamer@subsectionpages {8}{16}}
+\headcommand {\slideentry {2}{9}{0}{17/17}{Exercise 4.2 : Analyse }{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\sectionentry {3}{FIN}{18}{FIN}{0}}
+\headcommand {\beamer@sectionpages {6}{17}}
+\headcommand {\beamer@subsectionpages {8}{17}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{18}{One}}\headcommand {\beamer@subsectionpages {18}{17}}
+\headcommand {\slideentry {3}{1}{0}{18/18}{}{0}}
+\headcommand {\beamer@framepages {18}{18}}
+\headcommand {\beamer@partpages {1}{18}}
+\headcommand {\beamer@subsectionpages {18}{18}}
+\headcommand {\beamer@sectionpages {18}{18}}
+\headcommand {\beamer@documentpages {18}}
+\headcommand {\def \inserttotalframenumber {18}}
