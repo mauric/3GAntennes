@@ -1,7 +1,12 @@
 \select@language {french}
 \beamer@sectionintoc {1}{Introduction}{2}{0}{1}
 \beamer@subsectionintoc {1}{1}{One}{2}{0}{1}
-\beamer@sectionintoc {2}{Corps}{4}{0}{2}
-\beamer@subsectionintoc {2}{1}{One}{4}{0}{2}
-\beamer@sectionintoc {3}{FIN}{5}{0}{3}
-\beamer@subsectionintoc {3}{1}{One}{5}{0}{3}
+\beamer@sectionintoc {2}{Deuxi\IeC {\`e}me optimisation : le filtre \IeC {\`a} minimun de variance}{3}{0}{2}
+\beamer@subsectionintoc {2}{1}{One}{3}{0}{2}
+\beamer@subsectionintoc {2}{2}{Exercise 4.1 : Probl\IeC {\`e}me d'optimisation}{4}{0}{2}
+\beamer@subsectionintoc {2}{3}{Exercise 4.2 : Analyse }{5}{0}{2}
+\beamer@subsectionintoc {2}{4}{One}{7}{0}{2}
+\beamer@subsectionintoc {2}{5}{One}{8}{0}{2}
+\beamer@subsectionintoc {2}{6}{One}{9}{0}{2}
+\beamer@sectionintoc {3}{FIN}{10}{0}{3}
+\beamer@subsectionintoc {3}{1}{One}{10}{0}{3}

@@ -5,11 +5,7 @@
 %   w(m) = -------------------------
 %           v(phi)'inv(Rib)v(phi)
 %           
-%Cas bruité
-% RSB = 7db
 %
-
-
 %% VARIABLES GLOBALES
 clc
 clear all; % effacement de toutes les variables de lï¿½espace travail
@@ -41,7 +37,7 @@ M = NOMBRE_ANTENNES;
 Phis = pi/5;%20*pi/180; % dangle dï¿½incidence du signal utile
 Phi1 = -30*pi/180 % angle dï¿½incidence du premier interfï¿½rent
 Phi2 = +60* pi/5 %  angale dï¿½incidence du second interfï¿½rent
-RSB = 7; % rapport de puissance (en dB) entre le signal utile
+RSB = 10; % rapport de puissance (en dB) entre le signal utile
 % et le bruit au niveau de chaque capteur
 RSI1 = 800 % rapport de puissance (en dB) entre le signal utile et lï¿½interfï¿½rent n?1
 RSI2 = 800 % rapport de puissance (en dB) entre le signal utile et lï¿½interfï¿½rent n?2
