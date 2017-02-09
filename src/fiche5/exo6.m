@@ -49,41 +49,17 @@ v2 = zeros(M,1);%
 
 M_const = 1/sqrt(M);
 w = zeros(size(v,1),1);
-for m = 1:size(v,1)
- v1(m) = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(Phi1));
- v2(m) = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(Phi2));
- vs(m) = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(Phis));
-end  
-Rib = ((M/RSI1).*v1*v1'+(M/RSI2).*v2*v2'+(1/RSB).*eye(M));
-Rib_inv = inv(Rib);
+
+ m = transpose(1:size(v,1));
+ v1 = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(Phi1));
+ v2 = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(Phi2));
+ vs = M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(Phis));
+ 
 P = [vs v1 v2];
 f = [1 0 0];
 wfixe = P*(P'*P)*f';
 Q = eye(M) - P*inv(P'*P)*P'
 
-
-
-
-% %% plot some data
-% figure(); 
-% plot(phi,abs(C),'LineWidth',1);
-% grid on
-% legend('C(phi)', 'Location', 'SouthEast');
-% xlabel('\phi');
-% ylabel('|C(\phi)|');
-% title('Diagramme de Rayonnement');
-% 
-% figure();
-% TracePolar(phi,abs(C), -50);
-% legend('C(phi)', 'Location', 'SouthEast');
-% title('Diagramme de Rayonnement');
-% 
-% semilogy(phi,abs(C),'-b','LineWidth',1);
-% grid on
-% legend('C(phi)', 'Location', 'SouthEast');
-% xlabel('log \phi');
-% ylabel('log |C(\phi)|');    
-% title('Diagramme de Rayonnement (log)');
 %% GENERATION DE SIGNAUX
 
 %=============================================================================
@@ -96,10 +72,10 @@ y = zeros(1,size(x,2));
 
     clear v;
 
-    for i = 1:size(phi,2)
-    m = 1:M ;
-    v(:,i) =  M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(phi(i))); %li:i complex 
-    end
+for i = 1:size(phi,2)
+m = 1:M ;
+v(:,i) =  M_const*exp(-1i*2*pi*d_sur_lambda*(m-1)*sin(phi(i))); %li:i complex 
+end
 
 
 for n =1:size(x,2)
@@ -111,8 +87,14 @@ for n =1:size(x,2)
     for i = 1:size(phi,2)
      C(i) = w'*v(:,i)*v(:,i)'*w;
     end
-    figure(9)
-    plot(phi,10*log10(abs(C)))
+    figure()
+  %  plot(phi,10*log10(abs(C)))
+    semilogy(phi,abs(C),'-b','LineWidth',1);
+    grid on
+    legend('C(phi)', 'Location', 'SouthEast');
+    xlabel('log \phi');
+    ylabel('log |C(\phi)|');    
+    title('Diagramme de Rayonnement (log)');
     end
     
 %tous les 200 echantillon
